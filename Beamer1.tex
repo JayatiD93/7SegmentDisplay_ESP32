@@ -1,0 +1,369 @@
+\documentclass{beamer}
+\usepackage{listings}
+\lstset{
+%language=C,
+frame=single, 
+breaklines=true,
+columns=fullflexible
+}
+\usepackage{subcaption}
+\usepackage{setspace}
+\usepackage{url}
+\usepackage{tikz}
+\usepackage{tkz-euclide} % loads  TikZ and tkz-base
+%\usetkzobj{all}
+\usepackage[utf8]{inputenc}
+\usepackage{longtable}
+\usetikzlibrary{calc,math}
+\usepackage{float}
+\usetheme{Berlin}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usecolortheme{beaver}
+
+
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\usepackage[export]{adjustbox}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+%\usetheme{Boadilla}
+\newcommand\mytextbullet{\leavevmode%
+\usebeamertemplate{itemize item}\hspace{.5em}}
+
+\bibliographystyle{IEEEtran}
+
+\usepackage{color}
+
+\title{7-Segment Display using Flysky Transmitter}
+\author{B603 Lab}
+%{\and} \\
+%\vspace{10pt}
+%{Supervisor:} \\
+%{Dr. GVV Sharma} }
+
+\institute{Indian Institute of Technology, Hyderabad.}
+\date{\today}
+
+\begin{document}
+
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\section{Components}
+\begin{frame}
+\frametitle{Components}
+\begin{columns}
+\column{1\textwidth}
+  \begin{enumerate}
+  \item Flysky Receiver and Transmitter
+  \vspace{10pt}
+  \item ESP32
+  \vspace{10pt}
+  \item 7 Segment Display
+  
+  
+  \end{enumerate}
+  
+\end{columns}
+
+\end{frame}
+
+\section{Pinout Diagram of 7-Segment Display}
+\begin{frame}
+\frametitle{Pinout Diagram of 7-Segment Display}
+\begin{columns}
+\column{1\textwidth}
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}[b]{0.75\linewidth}
+    \includegraphics[width=\linewidth]{./figs/7-Segment-CA-Pinout-2.jpg}
+%    \caption{Coffee.}
+  \end{subfigure}
+
+ % \caption{Flysky Receiver}
+%  \label{fig:axis}
+\end{figure}
+
+
+
+%\caption{Flysky Receiver}
+  
+\end{columns}
+%\vspace{25px}
+
+
+
+\end{frame}
+
+\section{Wiring Diagram: Flysky-Rx and ESP32}
+\begin{frame}
+\frametitle{Wiring Diagram: Flysky-Rx and ESP32}
+\begin{columns}
+\column{0.4\textwidth}
+  
+  \begin{tabular} { | c  | c  |  }
+%\hline
+%\multicolumn{3} { | c | }{Books}\\
+\hline
+\textbf{Flysky-Rx pin} & \textbf{ESP32 pin} \\
+\hline
+Channel 2 & Pin-14  \\
+\hline
+Channel 4 & Pin-15\\
+\hline
+GND & GND  \\
+\hline
+Vin & 5v\\
+\hline
+\end{tabular}
+
+
+  
+ 
+  
+\end{columns}
+
+
+
+\end{frame}
+
+\section{Wiring Diagram: 7-Segment Display and ESP32}
+\begin{frame}
+\frametitle{Wiring Diagram: 7-Segment Display and ESP32}
+\begin{columns}
+\column{0.4\textwidth}
+  
+  \begin{tabular} { | c  | c  |  }
+%\hline
+%\multicolumn{3} { | c | }{Books}\\
+\hline
+\textbf{7-Segment pin} & \textbf{ESP32 pin} \\
+\hline
+Pin 1 & P-19\\
+\hline
+Pin 2 & P-17\\
+\hline
+Pin 4 & P-18\\
+\hline
+Pin 6 & P-18\\
+\hline
+Pin 7 & P-16  \\
+\hline
+Pin 8 & 3.3V\\
+\hline
+Pin 9 & P-19\\
+\hline
+
+\end{tabular}
+
+
+  
+ 
+  
+\end{columns}
+
+
+
+\end{frame}
+
+
+\section{Wiring Diagram: Flysky-Rx and Arduino}
+\begin{frame}
+\frametitle{Wiring Diagram: Flysky-Rx and Arduino}
+\begin{columns}
+\column{0.4\textwidth}
+  
+  \begin{tabular} { | c  | c  |  }
+%\hline
+%\multicolumn{3} { | c | }{Books}\\
+\hline
+\textbf{Flysky-Rx pin} & \textbf{Arduino pin} \\
+\hline
+Channel 2 & Pin-10  \\
+\hline
+Channel 4 & Pin-11\\
+\hline
+GND & GND  \\
+\hline
+Vin & 5v\\
+\hline
+\end{tabular}
+  
+\end{columns}
+
+\end{frame}
+
+
+\section{Wiring Diagram: 7-Segment Display and Arduino}
+\begin{frame}
+\frametitle{Wiring Diagram: 7-Segment Display and Arduino}
+\begin{columns}
+\column{0.4\textwidth}
+  
+  \begin{tabular} { | c  | c  |  }
+%\hline
+%\multicolumn{3} { | c | }{Books}\\
+\hline
+\textbf{7-Segment pin} & \textbf{Arduino pin} \\
+\hline
+Pin 1 & P-2\\
+\hline
+Pin 2 & P-3\\
+\hline
+Pin 4 & P-4\\
+\hline
+Pin 6 & P-4\\
+\hline
+Pin 7 & P-5  \\
+\hline
+Pin 8 & 3.3V\\
+\hline
+Pin 9 & P-2\\
+\hline
+
+\end{tabular}
+
+
+  
+ 
+  
+\end{columns}
+
+
+
+\end{frame}
+
+\section{Binding Tx. and Rx.}
+\begin{frame}
+\frametitle{Binding Tx. and Rx.}
+\begin{columns}
+\column{1\textwidth}
+
+  \begin{itemize}
+  \item  Check the reference number of the receiver and transmitter. If they are same, then no need of binding.
+  \vspace{10pt}
+  \item If the reference numbers are not same then binding of Rx and Tx is needed.
+  
+  
+  \end{itemize}
+\end{columns}
+%\vspace{25px}
+
+
+
+\end{frame}
+
+\section{Binding Tx. and Rx.}
+\begin{frame}
+\frametitle{Binding Tx. and Rx.}
+\begin{columns}
+\column{0.4\textwidth}
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}[b]{0.75\linewidth}
+    \includegraphics[width=\linewidth]{./figs/rx1.png}
+%    \caption{Coffee.}
+  \end{subfigure}
+
+  \caption{Flysky Receiver}
+%  \label{fig:axis}
+\end{figure}
+
+\column{0.4\textwidth}
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}[b]{0.75\linewidth}
+    \includegraphics[width=\linewidth]{./figs/rx1_updated.png}
+%    \caption{Coffee.}
+  \end{subfigure}
+
+  \caption{Flysky Receiver}
+%  \label{fig:axis}
+\end{figure}
+%\caption{Flysky Receiver}
+  
+\end{columns}
+%\vspace{25px}
+
+
+
+\end{frame}
+
+\section{Binding Tx. and Rx.}
+\begin{frame}
+\frametitle{Binding Tx. and Rx.}
+\begin{columns}
+\column{1\textwidth}
+
+  \begin{itemize}
+  \item  Short the GND and CHANNEL pin of B/VCC of the receiver.
+  \vspace{10pt}
+  \item Connect Vin pin with 5V pin of ESP32 and GND pin to GND pin of ESP32.
+  \vspace{10pt}
+  \item Press the bind key of the transmitter.
+  
+  
+  \end{itemize}
+\end{columns}
+
+
+
+\end{frame}
+
+\section{Code}
+\begin{frame}
+\frametitle{Code}
+\begin{columns}
+\column{1\textwidth}
+
+  \begin{itemize}
+  \item  Flash the code from arduino IDE to ESP32.\\
+  \url{https://github.com/JayatiD93/7SegmentDisplay_ESP32/blob/main/flysky_7Segment.ino}
+  
+  
+  \end{itemize}
+  \  
+\end{columns}
+%\vspace{25px}
+
+
+
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
